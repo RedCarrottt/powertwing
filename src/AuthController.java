@@ -104,7 +104,6 @@ public class AuthController implements ActionListener, KeyListener {
 
 		webpageButton = new JButton("Re-open Authentication Site");
 		webpageButton.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				WebBrowserCaller.openURL(authURL);
 			}
@@ -144,7 +143,7 @@ public class AuthController implements ActionListener, KeyListener {
 		} catch (IOException e) {
 			new PTDialog(authFrame, "Cannot write on database file",
 					new ActionListener() {
-						@Override
+						
 						public void actionPerformed(ActionEvent arg0) {
 							System.exit(0);
 						}
@@ -172,23 +171,23 @@ public class AuthController implements ActionListener, KeyListener {
 		}
 	}
 
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		go();
 	}
 
-	@Override
+	
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			go();
 		}
 	}
 
-	@Override
+	
 	public void keyReleased(KeyEvent e) {
 	}
 
-	@Override
+	
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			go();

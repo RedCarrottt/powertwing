@@ -36,7 +36,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import powertwing.supports.WebBrowserCaller;
-
 import twitter4j.Status;
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
@@ -87,7 +86,7 @@ public class MainFrameController {
 	// **** ****
 
 	// **** File path constants ****
-	// T/ODO load status file
+	// TODO load status file
 	// private final String STATUS_FILE_NAME = "status.dat";
 	// **** ****
 
@@ -214,18 +213,16 @@ public class MainFrameController {
 		tweetTextArea.setLineWrap(true);
 		tweetTextArea.setBorder(BorderFactory.createEtchedBorder());
 		tweetTextArea.getDocument().addDocumentListener(new DocumentListener() {
-			@Override
+
 			public void changedUpdate(DocumentEvent arg0) {
 				checkDisableReply();
 				updateTweetCount();
 			}
 
-			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				updateTweetCount();
 			}
 
-			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				checkDisableReply();
 				updateTweetCount();
@@ -244,7 +241,7 @@ public class MainFrameController {
 		upBarPanel.add(countLabel);
 		tweetButton = new JButton("Tweet!");
 		tweetButton.addActionListener(new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				composeTweet();
 			}
@@ -255,7 +252,7 @@ public class MainFrameController {
 	private void initMidBarPanel() {
 		contentMenu = new JComboBox();
 		contentMenu.addActionListener(new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				contentMenuChanged();
 			}
@@ -264,7 +261,7 @@ public class MainFrameController {
 
 		refreshButton = new JButton("Refresh (/)");
 		refreshButton.addActionListener(new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent arg0) {
 				refreshTimeline();
 			}
@@ -284,14 +281,12 @@ public class MainFrameController {
 		// Refresh timeline
 		ActionListener refreshAction = new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				refreshTimeline();
 			}
 		};
 		ActionListener refreshAction2 = new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (tweetTextArea.isFocusOwner() == true)
 					return;
@@ -314,7 +309,6 @@ public class MainFrameController {
 		// Hide up panels
 		ActionListener hideUpPanelsAction = new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				hideUpPanels();
 			}
@@ -326,7 +320,6 @@ public class MainFrameController {
 		// toggle up panels
 		ActionListener toggleUpPanelsAction = new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (upPanelsVisible)
 					hideUpPanels();
@@ -336,7 +329,6 @@ public class MainFrameController {
 		};
 		ActionListener toggle2UpPanelsAction = new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (tweetTextArea.isFocusOwner() == true)
 					return;
@@ -361,7 +353,7 @@ public class MainFrameController {
 
 		// Compose tweet
 		ActionListener composeTweetAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				composeTweet();
 			}
@@ -378,7 +370,7 @@ public class MainFrameController {
 
 		// Clear tweet textarea
 		ActionListener clearTweetTextAreaAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				clearTweetTextArea();
 			}
@@ -403,7 +395,7 @@ public class MainFrameController {
 		for (int i = 0; i < 10; i++) {
 			final int _i = i;
 			ActionListener changeContentMenuAction = new ActionListener() {
-				@Override
+
 				public void actionPerformed(ActionEvent e) {
 					changeContentMenu(_i);
 				}
@@ -421,7 +413,7 @@ public class MainFrameController {
 
 		// action on listitem
 		ActionListener listItemAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				int index = timelineList.getSelectedIndex();
 				spaceActionListItem(index);
@@ -433,7 +425,7 @@ public class MainFrameController {
 
 		// reply to tweet
 		ActionListener replyAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				int index = timelineList.getSelectedIndex();
 				if (index >= 0) {
@@ -458,7 +450,7 @@ public class MainFrameController {
 				JComponent.WHEN_FOCUSED);
 		// retweet
 		ActionListener retweetAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				int index = timelineList.getSelectedIndex();
 				if (index >= 0) {
@@ -483,7 +475,7 @@ public class MainFrameController {
 				JComponent.WHEN_FOCUSED);
 		// quote
 		ActionListener quoteAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				int index = timelineList.getSelectedIndex();
 				if (index >= 0) {
@@ -513,7 +505,7 @@ public class MainFrameController {
 				JComponent.WHEN_FOCUSED);
 		// favorite
 		ActionListener favoriteAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				int index = timelineList.getSelectedIndex();
 				if (index >= 0) {
@@ -542,7 +534,7 @@ public class MainFrameController {
 				JComponent.WHEN_FOCUSED);
 		// delete tweet
 		ActionListener deleteTweetAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				int index = timelineList.getSelectedIndex();
 				if (index >= 0) {
@@ -579,30 +571,26 @@ public class MainFrameController {
 				.getKeyStroke(KeyEvent.VK_BACK_SPACE,
 						InputEvent.META_DOWN_MASK, false),
 				JComponent.WHEN_FOCUSED);
-		// T/ODO user info
+		// TODO user info
 	}
 
 	private void initMouseActions() {
 		timelineList.addMouseListener(new MouseListener() {
-			@Override
+
 			public void mouseClicked(MouseEvent arg0) {
 			}
 
-			@Override
 			public void mouseEntered(MouseEvent arg0) {
 			}
 
-			@Override
 			public void mouseExited(MouseEvent arg0) {
 			}
 
-			@Override
 			public void mousePressed(MouseEvent arg0) {
 				int row = timelineList.locationToIndex(arg0.getPoint());
 				maybeShowTimelinePopup(arg0, row);
 			}
 
-			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				int row = timelineList.locationToIndex(arg0.getPoint());
 				maybeMouseActionListItem(arg0, row);
@@ -614,22 +602,18 @@ public class MainFrameController {
 	private void enrollMainFrameResizingEvent() {
 		mainFrame.addComponentListener(new ComponentListener() {
 
-			@Override
 			public void componentHidden(ComponentEvent arg0) {
 				resizeComponents();
 			}
 
-			@Override
 			public void componentMoved(ComponentEvent arg0) {
 				resizeComponents();
 			}
 
-			@Override
 			public void componentResized(ComponentEvent arg0) {
 				resizeComponents();
 			}
 
-			@Override
 			public void componentShown(ComponentEvent arg0) {
 				resizeComponents();
 			}
@@ -736,7 +720,7 @@ public class MainFrameController {
 	}
 
 	private void loadStatus() {
-		// T/ODO load status
+		// TODO load status
 		initStatus();
 		/*
 		 * try { FileReader reader = new FileReader(STATUS_FILE_NAME);
@@ -745,7 +729,7 @@ public class MainFrameController {
 		 */
 	}
 
-	// T/ODO save status
+	// TODO save status
 	/*
 	 * private void saveStatus() { try { FileWriter writer = new
 	 * FileWriter(STATUS_FILE_NAME); BufferedWriter out = new
@@ -754,8 +738,7 @@ public class MainFrameController {
 	 * } catch (IOException e) { new PTDialog(mainFrame,
 	 * "Cannot write on status file", new ActionListener() {
 	 * 
-	 * @Override public void actionPerformed(ActionEvent arg0) { System.exit(0);
-	 * } }); } }
+	 * public void actionPerformed(ActionEvent arg0) { System.exit(0); } }); } }
 	 */
 	// **** ****
 
@@ -946,7 +929,7 @@ public class MainFrameController {
 
 		TimelineListPopupMenuItem item;
 		item = new TimelineListPopupMenuItem("Reply (R)", new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				replyTo(_status);
 			}
@@ -956,7 +939,7 @@ public class MainFrameController {
 		if (user.isProtected() == true) {
 			item = new TimelineListPopupMenuItem("(Protected account)",
 					new ActionListener() {
-						@Override
+
 						public void actionPerformed(ActionEvent e) {
 							// Do nothing
 						}
@@ -966,7 +949,7 @@ public class MainFrameController {
 			if (status.isRetweetedByMe() == true) {
 				item = new TimelineListPopupMenuItem("(Retweeted by You)",
 						new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent e) {
 								// Do nothing
 							}
@@ -975,7 +958,7 @@ public class MainFrameController {
 			} else {
 				item = new TimelineListPopupMenuItem("Retweet (T)",
 						new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent e) {
 								retweet(_status);
 							}
@@ -984,7 +967,7 @@ public class MainFrameController {
 			}
 			item = new TimelineListPopupMenuItem("Quote (Shift+T)",
 					new ActionListener() {
-						@Override
+
 						public void actionPerformed(ActionEvent e) {
 							quoteTweet(_status);
 						}
@@ -992,33 +975,40 @@ public class MainFrameController {
 			timelineListPopupMenuItems.add(item);
 		}
 
-		/*
-		 * if (status.isFavorited() == true) { item = new
-		 * TimelineListPopupMenuItem("Remove from Favorite (F)", new
-		 * ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) {
-		 * removeFromFavorite(_status); } });
-		 * timelineListPopupMenuItems.add(item); } else { item = new
-		 * TimelineListPopupMenuItem("Add to Favorite (F)", new ActionListener()
-		 * {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) {
-		 * addToFavorite(_status); } }); timelineListPopupMenuItems.add(item); }
-		 */
+		if (status.isFavorited() == true) {
+			item = new TimelineListPopupMenuItem("Remove from Favorite (F)",
+					new ActionListener() {
 
-		/*
-		 * item = new TimelineListPopupMenuItem("@" + user.getScreenName() +
-		 * " (I)", new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) { // T/ODO User
-		 * Info } }); timelineListPopupMenuItems.add(item);
-		 */
+						public void actionPerformed(ActionEvent e) {
+							removeFromFavorite(_status);
+						}
+					});
+			timelineListPopupMenuItems.add(item);
+		} else {
+			item = new TimelineListPopupMenuItem("Add to Favorite (F)",
+					new ActionListener() {
+
+						public void actionPerformed(ActionEvent e) {
+							addToFavorite(_status);
+						}
+					});
+			timelineListPopupMenuItems.add(item);
+		}
+
+		item = new TimelineListPopupMenuItem("@" + user.getScreenName()
+				+ " (I)", new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO User Info
+			}
+		});
+
+		timelineListPopupMenuItems.add(item);
 
 		if (user.getScreenName().equals(AuthController.getMyScreenName())) {
 			item = new TimelineListPopupMenuItem("Delete (D)",
 					new ActionListener() {
-						@Override
+
 						public void actionPerformed(ActionEvent e) {
 							deleteTweet(_status);
 						}
@@ -1033,7 +1023,7 @@ public class MainFrameController {
 				final String _uriString = link.getURL().toString();
 				item = new TimelineListPopupMenuItem(_urlString,
 						new ActionListener() {
-							@Override
+
 							public void actionPerformed(ActionEvent e) {
 								WebBrowserCaller.openURL(_uriString);
 							}
@@ -1165,7 +1155,7 @@ public class MainFrameController {
 		final MainFrameController _frameCon = this;
 		final long _statusId = status.getId();
 		ActionListener retweetAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				RetweetThread thread;
 				thread = new RetweetThread(_frameCon, _statusId);
@@ -1203,7 +1193,7 @@ public class MainFrameController {
 		final MainFrameController _frameCon = this;
 		final long _statusId = status.getId();
 		ActionListener removeFromFavoriteAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				RemoveFromFavoriteThread thread;
 				thread = new RemoveFromFavoriteThread(_frameCon, _statusId);
@@ -1219,7 +1209,7 @@ public class MainFrameController {
 		final Status _status = status;
 		final long _statusId = status.getId();
 		ActionListener deleteAction = new ActionListener() {
-			@Override
+
 			public void actionPerformed(ActionEvent e) {
 				DeleteTweetThread thread;
 				thread = new DeleteTweetThread(_frameCon, _statusId, _status,
@@ -1377,7 +1367,6 @@ public class MainFrameController {
 	class timelineCellRenderer implements ListCellRenderer {
 		private final Color HIGHLIGHT_COLOR = new Color(112, 209, 255);
 
-		@Override
 		public Component getListCellRendererComponent(JList list, Object value,
 				int index, boolean isSelected, boolean cellHasFocus) {
 			TimelineListEntry entry = (TimelineListEntry) value;

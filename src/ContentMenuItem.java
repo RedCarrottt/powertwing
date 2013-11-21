@@ -1,5 +1,5 @@
 // Done Requirement : "Timeline", "Mentions"
-// T/ODO Requirements : "Direct Messages", "List", "My Info", "Settings"
+// TODO Requirements : "Direct Messages", "List", "My Info", "Settings"
 
 class ContentMenuItemMentions extends ContentMenuItemLoadable {
 	public ContentMenuItemMentions(String name, MainFrameController frameCon) {

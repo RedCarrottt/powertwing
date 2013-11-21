@@ -49,7 +49,7 @@ class TimelineListEntryStatus extends TimelineListEntry {
 		}
 		int fontSize = 13;
 		int charsPerLine = textWidth * 2 / fontSize - 2;
-		// T/ODO WORD WRAP
+		// TODO WORD WRAP
 		return "<html><div style='width:"
 				+ textWidth
 				+ "; margin:5px 0px 5px 0px; word-wrap:break-all; font-size:"
